@@ -2,7 +2,7 @@
 
 Products and organizations may want to claim conformance with this specification for a variety of reasons. For example, a software vendor may want to assert that its product generates and/or processes XCCDF benchmark documents properly. Another example is a policy mandating that an organization use XCCDF for documenting and executing its security configuration checklists.
 
-This section provides the high-level requirements that aproduct or benchmark document must meet for conformance with this specification. Most of the requirements listed in this section reference other sections in the report that fully define the requirements.
+This section provides the high-level requirements that a product or benchmark document must meet for conformance with this specification. Most of the requirements listed in this section reference other sections in the report that fully define the requirements.
 
 Other specifications that use XCCDF may define additional requirements and recommendations for XCCDF's use. Such requirements and recommendations are outside the scope of this publication.
 
@@ -18,7 +18,7 @@ There are two types of XCCDF products: benchmark producers and benchmark consume
 
 ## 4.2 Benchmark Document Conformance
 
-XCCDFbenchmark documents claiming conformance with this specification SHALL follow these requirements:
+XCCDF benchmark documents claiming conformance with this specification SHALL follow these requirements:
 
 1. Adhere to the official XCCDF schema as explained in Section 6.
 

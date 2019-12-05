@@ -26,7 +26,7 @@ In XCCDF 1.2 the default value of the _@use_ attribute is "value", which causes 
 
 ## A.4 Properties Removed or Deprecated Since XCCDF 1.1.4
 
-Several properties of _\<xccdf:Benchmark\>_, _\<xccdf:Rule\>_, and _\<xccdf:Group\>_ elements were removed or deprecated between XCCDF 1.1.4 and XCCDF 1.2. Table 42identifies these properties, explains the rationale behind their removal or deprecation, and identifies alternative operations that subsume their capabilities. Converting content from XCCDF 1.1.4 to XCCDF 1.2 should make use of these alternative operations.
+Several properties of _\<xccdf:Benchmark\>_, _\<xccdf:Rule\>_, and _\<xccdf:Group\>_ elements were removed or deprecated between XCCDF 1.1.4 and XCCDF 1.2. Table 42 identifies these properties, explains the rationale behind their removal or deprecation, and identifies alternative operations that subsume their capabilities. Converting content from XCCDF 1.1.4 to XCCDF 1.2 should make use of these alternative operations.
 
 **Table 42: Alternative Operations for Removed and Deprecated XCCDF 1.1.4 Constructs**
 
