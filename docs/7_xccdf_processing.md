@@ -276,7 +276,8 @@ Now consider the following _\<xccdf:Profile\>_ definitions:
 
 Because Profile selectors are appended under extension, after Loading steps have completed, Profile2's effective list of selectors would look like the following (with numbers added for reference and identifier names condensed for brevity):
 
-1. \< ![](NISTIR-7275r4-updated-20120315_html_f82972e25d089161.gif) select idref="Rule1" selected="true" /\>
+***Inherited from Profile1***
+1. \<select idref="Rule1" selected="true" /\>
 2. \<select idref="Cluster1" selected="false" /\>
 3. \< Inherited from Profile1 select idref="Group1" selected="true" /\>
 4. \<refine-value idref="Value1" selector="sel1" /\>
@@ -284,7 +285,10 @@ Because Profile selectors are appended under extension, after Loading steps have
 6. \<set-value idref="Value4"\>NEWVALUE\</set-value\>
 7. \<refine-rule idref="Rule2" selector="sel3" /\>
 8. \<refine-rule idref="Cluster3" selector="sel1" /\>
-9. \< Added from Profile2 ![](NISTIR-7275r4-updated-20120315_html_b7aa0f99b8285778.gif) select idref="Rule1" selected="false" /\>
+
+***Added from Profile2***
+
+9. \<select idref="Rule1" selected="false" /\>
 10. \<select idref="Rule3" selected="true" /\>
 11. \<refine-value idref="Cluster2" selector="sel5" /\>
 12. \<refine-rule idref="Rule5" selector="sel6" /\>
@@ -348,7 +352,9 @@ A benchmark consumer shall not "backtrack" in the processing of these steps. For
 
 Figure 2 provides a flowchart that illustrates check processing.
 
-![Frame11](NISTIR-7275r4-updated-20120315_html_fffcdf158e62b55c.gif) ![Canvas 2](NISTIR-7275r4-updated-20120315_html_e17cdbc21d7f27f7.gif)
+| **Figure 2: Check Processing Flowchart (when the check's parent is an \<xccdf:Rule\>)** |
+| --- |
+![Figure 2](images/figure_2.gif "Figure 2: Check Processing Flowchart")
 
 ##### 7.2.3.5.2 Rules with Multiple Results
 
@@ -389,12 +395,12 @@ During creation of _\<xccdf:TestResult\>_ elements, any _\<xccdf:fix\>_ elements
 
 Benchmark consumers MUST support resolution of XHTML _\<object\>_ elements, regardless of whether XHTML rendering is supported. The XHTML _\<object\>_ element supports substitutions of a variety of information from an item or profile, or the string content of an _\<xccdf:plain-text\>_ definition. To avoid possible conflicts with uses of an XHTML _\<object\>_ that should not be processed specially, each XCCDF _\<object\>_ reference must be a relative URI beginning with "#xccdf:". The following URI values can be used to refer to things from an XHTML _\<object\>_ element, using the _@data_ attribute:
 
-- **#xccdf:value:** _**id.**_ Insert the value of the _\<xccdf:plain-text\>_ block, _\<xccdf:Value\>_, or _\<xccdf:fact\>_ with id _id_. The value of the reference should be substituted for the entire _\<object\>_ element and its content (if any). If the _id_ cannot be resolved, then the textual content of the _\<object\>_ element should be retained.
-- **#xccdf:title:** _**id.**_ Insert the string content of the _\<xccdf:title\>_ element of the item with id _id_. Use the current language value locale setting, if any. The _\<xccdf:title\>_ string should be substituted for the entire _\<object\>_ element and its content (if any). If the _id_ cannot be resolved, then the textual content of the _\<object\>_ element should be retained.
+- **#xccdf:value:**_**id.**_ Insert the value of the _\<xccdf:plain-text\>_ block, _\<xccdf:Value\>_, or _\<xccdf:fact\>_ with id _id_. The value of the reference should be substituted for the entire _\<object\>_ element and its content (if any). If the _id_ cannot be resolved, then the textual content of the _\<object\>_ element should be retained.
+- **#xccdf:title:**_**id.**_ Insert the string content of the _\<xccdf:title\>_ element of the item with id _id_. Use the current language value locale setting, if any. The _\<xccdf:title\>_ string should be substituted for the entire _\<object\>_ element and its content (if any). If the _id_ cannot be resolved, then the textual content of the _\<object\>_ element should be retained.
 
 ##### 7.2.3.6.4 Reference Processing
 
-XCCDF benchmark consumers MUST support reference processing that uses the XHTML anchor ("a") element. The anchor element can be used to create an intra-document link to an XCCDF item or profile. To avoid possible conflicts with uses of the XHTML anchor element that should not be processed specially, each XCCDF anchor reference must be a relative URI beginning with "#xccdf:". The URI value **#xccdf:link:** _**id**_ can be used to refer to things from an anchor element, using the _@href_ attribute. This creates an intra-document link to the point in the document where the item _id_ is described. The content of the element should be the text of the link.
+XCCDF benchmark consumers MUST support reference processing that uses the XHTML anchor ("a") element. The anchor element can be used to create an intra-document link to an XCCDF item or profile. To avoid possible conflicts with uses of the XHTML anchor element that should not be processed specially, each XCCDF anchor reference must be a relative URI beginning with "#xccdf:". The URI value **#xccdf:link:**_**id**_ can be used to refer to things from an anchor element, using the _@href_ attribute. This creates an intra-document link to the point in the document where the item _id_ is described. The content of the element should be the text of the link.
 
 ## 7.3 Assessment Outputs
 
@@ -406,10 +412,9 @@ When a benchmark consumer performs an assessment against a system, it accepts as
 - **Benchmark results** – Machine-readable testing results, meant for storage, long-term tracking, or incorporation into other reports (e.g., a site-wide report). This should be in XCCDF, using the _\<xccdf:TestResult\>_ element.
 - **Fix scripts** – Machine-readable content, usually text, the application of which will remediate some or all of the non-compliance issues found by the benchmark consumer. These scripts may be included in _\<xccdf:TestResult\>_ elements (see Section 6.6).
 
-| ![](NISTIR-7275r4-updated-20120315_html_5ea06c792746c93d.gif) |
+| **Figure 3: Workflow for Assessing Benchmark Compliance** |
 | --- |
-
-**Figure 3: Workflow for Assessing Benchmark Compliance**
+| ![Figure 3](images/figure_3.gif "Figure 3: Workflow for Assessing Benchmark Compliance") |
 
 ### 7.3.2 Scoring Models
 
@@ -456,4 +461,4 @@ This model is identified by the URI "urn:xccdf:scoring:flat-unweighted". It is c
 
 #### 7.3.2.5 The Absolute Model
 
-This model is identified by the URI "urn:xccdf:scoring:absolute". It gives a score of 1 only when all applicable Rules in the benchmark pass, and 0 otherwise. It is computed by applying the Flat Model and returning 1 if _s_=_m_, and 0 otherwise. Tools may support this model.
+This model is identified by the URI "urn:xccdf:scoring:absolute". It gives a score of 1 only when all applicable Rules in the benchmark pass, and 0 otherwise. It is computed by applying the Flat Model and returning 1 if _s = m_, and 0 otherwise. Tools may support this model.

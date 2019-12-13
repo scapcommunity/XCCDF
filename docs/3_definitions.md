@@ -28,38 +28,23 @@ For the purposes of this document, the following terms, definitions, and abbrevi
 
 ## 3.2 Acronyms and Abbreviations
 
-CCE Common Configuration Enumeration
-
-CPE Common Platform Enumeration
-
-CVE Common Vulnerabilities and Exposures
-
-DCMI Dublin Core Metadata Initiative
-
-DNS Domain Name System
-
-IANA Internet Assigned Numbers Authority
-
-IR Interagency Report
-
-NIST National Institute of Standards and Technology
-
-OCIL Open Checklist Interactive Language
-
-OVAL Open Vulnerability and Assessment Language
-
-PCRE Perl Compatible Regular Expression
-
-RFC Request for Comments
-
-SCAP Security Content Automation Protocol
-
-SP Special Publication
-
-W3C World Wide Web Consortium
-
-XCCDF Extensible Configuration Checklist Description Format
-
-XHTML Extensible Hypertext Markup Language
-
-XML Extensible Markup Language
+| | |
+| --- | --- |
+| CCE | Common Configuration Enumeration |
+| CPE | Common Platform Enumeration |
+| CVE | Common Vulnerabilities and Exposures |
+| DCMI | Dublin Core Metadata Initiative |
+| DNS | Domain Name System |
+| IANA | Internet Assigned Numbers Authority |
+| IR | Interagency Report |
+| NIST | National Institute of Standards and Technology |
+| OCIL | Open Checklist Interactive Language |
+| OVAL | Open Vulnerability and Assessment Language |
+| PCRE | Perl Compatible Regular Expression |
+| RFC | Request for Comments |
+| SCAP | Security Content Automation Protocol |
+| SP | Special Publication |
+| W3C | World Wide Web Consortium |
+| XCCDF | Extensible Configuration Checklist Description Format |
+| XHTML | Extensible Hypertext Markup Language |
+| XML | Extensible Markup Language |

@@ -8,7 +8,7 @@ The XML namespace of XCCDF changed from "http://checklists.nist.gov/xccdf/1.1" i
 
 ## A.2 Conversion of Identifiers
 
-XCCDF 1.2 enforces a canonical format for the _@id_attributes (identifiers) of all major XCCDF elements: _\<xccdf:Benchmark\>_, _\<xccdf:Rule\>_, _\<xccdf:Group\>_, _\<xccdf:Value\>_, _\<xccdf:Profile\>_,_\<xccdf:TestResult\>_, and _\<xccdf:Tailoring\>_. As such, the values of _@id_attributes in XCCDF 1.1.4 are unlikely to be compliant with this new format. Fortunately, conversion from XCCDF 1.1.4 identifiers to XCCDF 1.2 identifiers is simple and mechanical using the following steps:
+XCCDF 1.2 enforces a canonical format for the _@id_attributes (identifiers) of all major XCCDF elements: _\<xccdf:Benchmark\>_, _\<xccdf:Rule\>_, _\<xccdf:Group\>_, _\<xccdf:Value\>_, _\<xccdf:Profile\>_, _\<xccdf:TestResult\>_, and _\<xccdf:Tailoring\>_. As such, the values of _@id_ attributes in XCCDF 1.1.4 are unlikely to be compliant with this new format. Fortunately, conversion from XCCDF 1.1.4 identifiers to XCCDF 1.2 identifiers is simple and mechanical using the following steps:
 
 1. Specify a reverse-DNS style namespace (e.g., com.company or gov.agency), denoted as N
 2. For each major XCCDF element (as listed above)
@@ -20,9 +20,9 @@ This procedure allows any XCCDF 1.1.4 identifier to be replaced with a recogniza
 
 ## A.3 Conversion of \<xccdf:sub\> Elements
 
-XCCDF 1.2 gives authors a greater degree of control of how _\<xccdf:sub\>_ elements get replaced during text substitution. In previous versions, when an _\<xccdf:sub\>_ element referenced an _\<xccdf: __Value__ \>_ element, either the _\<xccdf: __Value__ \>_ element's title or currently-selected value would be substituted for the _\<xccdf:sub\>_ element, depending on the processing model. In XCCDF 1.2, authors can use the _\<xccdf: __sub__ \>_ element's _@__use_attribute to control substitution regardless of the processing model.
+XCCDF 1.2 gives authors a greater degree of control of how _\<xccdf:sub\>_ elements get replaced during text substitution. In previous versions, when an _\<xccdf:sub\>_ element referenced an _\<xccdf:Value\>_ element, either the _\<xccdf:Value\>_ element's title or currently-selected value would be substituted for the _\<xccdf:sub\>_ element, depending on the processing model. In XCCDF 1.2, authors can use the _\<xccdf:sub\>_ element's _@use_ attribute to control substitution regardless of the processing model.
 
-In XCCDF 1.2 the default value of the _@use_ attribute is "value", which causes the referenced _\<xccdf:Value\>_ element's currently-selected value to be inserted during text substitution. In all legacy content, which would not have a _@use_ attribute and would therefore use this default, this would represent a change in behavior. To ensure that documents converted from XCCDF 1.1.4 to XCCDF 1.2 continue to have the same text substitution processing as before, every _\<xccdf: __sub__ \>_ element in the resulting XCCDF 1.2 document should be given a _@__use_attribute with a value of "legacy". The "legacy" setting indicates that substitution processing should be performed in the context-dependent manner employed by XCCDF 1.1.4 and before.
+In XCCDF 1.2 the default value of the _@use_ attribute is "value", which causes the referenced _\<xccdf:Value\>_ element's currently-selected value to be inserted during text substitution. In all legacy content, which would not have a _@use_ attribute and would therefore use this default, this would represent a change in behavior. To ensure that documents converted from XCCDF 1.1.4 to XCCDF 1.2 continue to have the same text substitution processing as before, every _\<xccdf:sub\>_ element in the resulting XCCDF 1.2 document should be given a _@use_ attribute with a value of "legacy". The "legacy" setting indicates that substitution processing should be performed in the context-dependent manner employed by XCCDF 1.1.4 and before.
 
 ## A.4 Properties Removed or Deprecated Since XCCDF 1.1.4
 
@@ -91,8 +91,7 @@ Several properties of _\<xccdf:Benchmark\>_, _\<xccdf:Rule\>_, and _\<xccdf:Grou
 
 **Table 43: Mapping Previous Release Sections to This Release**
 
-| Release 0 (XCCDF 1.1.4 Final) or
- Release 1 (Initial Public Comment Draft) | Release 2 (Second Public Comment Draft) |
+| Release 0 (XCCDF 1.1.4 Final) or Release 1 (Initial Public Comment Draft) | Release 2 (Second Public Comment Draft) |
 | --- | --- |
 | 1. Introduction | 5.1 |
 | 1.1 Background | 5.1 |

@@ -88,7 +88,7 @@ Metadata is a powerful feature for authors. However, XCCDF puts some limits on t
 
 ### 6.2.5 Platform Names
 
-The Common Platform Enumeration (CPE) specification allows a specific hardware or software platform to be identified by a unique name. CPE names can express only single platforms (e.g., "cpe:2.3:o:microsoft:windows\_xp:\*:gold:professional:\*:\*:\*:\*:\*" for Microsoft Windows XP Professional Edition). CPE applicability language statements can express complex logical constructions of CPE names.
+The Common Platform Enumeration (CPE) specification allows a specific hardware or software platform to be identified by a unique name. CPE names can express only single platforms (e.g., "cpe:2.3\:o\:microsoft:windows\_xp:\*:gold:professional:\*:\*:\*:\*:\*" for Microsoft Windows XP Professional Edition). CPE applicability language statements can express complex logical constructions of CPE names.
 
 _\<xccdf:Benchmark\>_, _\<xccdf:Profile\>_, _\<xccdf:Rule\>_, and _\<xccdf:Group\>_ elements may be qualified by applicable platform using the _\<xccdf:platform\>_ element. _\<xccdf:TestResult\>_ elements may also include _\<xccdf:platform\>_ elements. The _\<xccdf:platform\>_ element's _@idref_ attribute may hold a reference to either a CPE name or the _@id_ attribute of a CPE applicability language expression that SHALL be defined as a child of the _\<xccdf:Benchmark\>_ using a _\<cpe2:platform-specification\>_ element (see Table 4). (The syntax for referring to a local CPE applicability language identifier SHOULD be a "#" character before the identifier, such as "#cpeid1".)
 
@@ -101,9 +101,9 @@ Here is an example of a _\<cpe2:platform-specification\>_ element:
   <cpe2:platform id="xp_and_acrobat_9.0">
     <cpe2:logical-test operator="AND" negate="false">
       <cpe2:fact-ref
-         name="cpe:2.3:o:microsoft:windows\_xp:\*:\*:\*:\*:\*:\*:\*:\*"/>
+         name="cpe:2.3:o:microsoft:windows_xp:*:*:*:*:*:*:*:*"/>
       <cpe2:fact-ref
-         name="cpe:2.3:a:adobe:acrobat:9.0:\*:\*:\*:\*:\*:\*:\*"/>
+         name="cpe:2.3:a:adobe:acrobat:9.0:*:*:*:*:*:*:*"/>
     </cpe2:logical-test>
    </cpe2:platform>
 </cpe2:platform-specification>
@@ -184,7 +184,7 @@ Each XCCDF benchmark document SHALL consist of a single root _\<xccdf:Benchmark\
   <xccdf:description>
       A <htm:b>Small</htm:b> Example
   </xccdf:description>
-  <xccdf:platform idref="cpe:2.3:o:cisco:ios:12.0:\*:\*:\*:\*:\*:\*:\*"/>
+  <xccdf:platform idref="cpe:2.3:o:cisco:ios:12.0:*:*:*:*:*:*:*"/>
   <xccdf:version>0.2</xccdf:version>
   <xccdf:reference href="http://www.ietf.org/rfc/rfc822.txt">
       Standard for the Format of ARPA Internet Text Messages
@@ -194,10 +194,9 @@ Each XCCDF benchmark document SHALL consist of a single root _\<xccdf:Benchmark\
 
 Figure 1 illustrates a typical internal structure for a Benchmark.
 
-| ![](NISTIR-7275r4-updated-20120315_html_e34a4e492b9f2def.gif) |
+| **Figure 1: Typical Structure of a Benchmark** |
 | --- |
-
-**Figure 1: Typical Structure of a Benchmark**
+| ![Figure 1](images/figure_1.gif "Figure 1: Typical Structure of a Benchmark") |
 
 The possible inheritance relations between Rule and Value instances are constrained by the tree structure of the Benchmark. All extension relationships must be resolved before the Benchmark can be applied. An item may only extend another item of the same type that is visible from its scope. In other words, an item Y may extend a base item X, as long as they are the same type and one of the following visibility conditions holds:
 
@@ -274,9 +273,9 @@ Table 5 describes the properties common to all three classes of items: _\<xccdf:
 | question (element) | string | 0-n | Interrogative text to present to the user during tailoring. It may also be included into a generated document. For _\<xccdf:Rule\>_ and _\<xccdf:Group\>_ elements, the question text should be a simple binary (yes/no) question because it is supporting the selection aspect of tailoring. For _\<xccdf:Value\>_ elements, the question should solicit the user to provide a specific value. Tools MAY also display constraints on values and any defaults as specified by the other \<xccdf:Value\> properties (see Section 6.4.5). It MAY have an _@override_ attribute (see Section 6.3.1) and/or an _@xml:lang_ attribute (see Section 6.2.10). |
 | reference (element) | _special_ | 0-n | References where the user can learn more about the subject of this item. See Section 6.2.6. |
 | metadata (element) | _special_ | 0-n | XML metadata associated with this item, such as sources, special information, or other details. See Section 6.2.4. |
-| abstract (attribute) | boolean | 0-1 | If true, then this item is abstract and exists only to be extended (default: false). _ **The use of this attribute for** _ _ **\<xccdf:Group\>** _ _**elements is deprecated and should be avoided (see Table 42).**_ |
+| abstract (attribute) | boolean | 0-1 | If true, then this item is abstract and exists only to be extended (default: false). **The use of this attribute for**_ **\<xccdf:Group\>** _ _**elements is deprecated and should be avoided (see Table 42).**_ |
 | cluster-id (attribute) | identifier | 0-1 | An identifier to be used as a means to identify (refer to) related _\<xccdf:Group\>_, _\<xccdf:Rule\>_, and _\<xccdf:Value\>_ elements throughout the _\<xccdf:Benchmark\>._ It designates membership in a cluster of items, which are used for controlling items via profiles. All the items with the same cluster identifier belong to the same cluster. A selector in an _\<xccdf:Profile\>_may refer to a cluster, thus making it easier for authors to create and maintain profiles in a complex benchmark. |
-| extends (attribute) | identifier | 0-1 | The identifier of an item on which to base this item. If present, it MUST have a value equal to the _@id_ attribute of another item. See Section 6.3.1 and Section 7.2.2. _ **The use of this attribute for** _ _ **\<xccdf:Group\>** _ _**elements is deprecated and should be avoided (see Table 42).**_ |
+| extends (attribute) | identifier | 0-1 | The identifier of an item on which to base this item. If present, it MUST have a value equal to the _@id_ attribute of another item. See Section 6.3.1 and Section 7.2.2. _**The use of this attribute for \<xccdf:Group\> elements is deprecated and should be avoided (see Table 42).**_ |
 | hidden (attribute) | boolean | 0-1 | If this item should be excluded from any generated documents (default: false). For example, an author might set the _@hidden_ attribute on an incomplete item in a draft benchmark. The item may still be used during assessments, but it shall not appear in generated documents. |
 | prohibitChanges (attribute) | boolean | 0-1 | If benchmark producers should prohibit changes to this item during tailoring (default: false). An author should use this when they do not want to allow end users to change the item. For example, benchmark users may use this to define items that are integral to compliance, or enterprise security officers may use it to constrain a benchmark so it reflects organizational policies. |
 | xml:lang (attribute) | _special_ | 0-1 | The language for the item; see Section 6.2.10. |
