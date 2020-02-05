@@ -3276,25 +3276,209 @@ Table 21 describes the *\<xccdf:Profile\>* element's properties.
 
 []{#_Ref294717444 .anchor}Table : \<xccdf:Profile\> Element Properties
 
-  Property                                                                    Type                Count   Description
-  --------------------------------------------------------------------------- ------------------- ------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  status (element)                                                            *special*           0-n     Status of this *\<xccdf:Profile\>*and date at which it attained that status. Authors may use this element to record the maturity or consensus level of a profile. If the status is not given explicitly, then the *\<xccdf:Profile\>* is taken to have the same status as its parent *\<xccdf:Benchmark\>*. See Section 6.2.8.
-  dc-status (element)                                                         *special*           0-n     Holds additional status information using the Dublin Core format. See Section 6.2.8.
-  version (element)                                                           string              0-1     Version number of this *\<xccdf:Profile\>*, with an optional *\@time* timestamp attribute (when the version was completed) and an optional *\@update* URI attribute (where updates may be obtained).
-  title (element)                                                             string              1-n     Title of this *\<xccdf:Profile\>*. It may have one or more *\<xccdf:sub\>* elements (see Section 6.2.9), an *\@xml:lang* attribute (see Section 6.2.10), and/or an *\@override* attribute (see Section 6.3.1).
-  description (element)                                                       HTML-enabled text   0-n     Text that describes this *\<xccdf:Profile\>*. It MAY have one or more *\<xccdf:sub\>* elements (see Section 6.2.9), an *\@override* attribute (see Section 6.3.1), and/or an *\@xml:lang* attribute (see Section 6.2.10).
-  reference (element)                                                         *special*           0-n     A reference where the user can learn more about the subject of this profile. See Section 6.2.6.
-  platform (element)                                                          string              0-n     A target platform for this profile. See Section 6.2.5.
-  select, set-complex-value, set-value, refine-value, refine-rule (element)   *special*           0-n     References to Groups, Rules, and Values for customization and tailoring. See Section 6.5.3.
-  metadata (element)                                                          *special*           0-n     Metadata associated with this *\<xccdf:Profile\>*. See Section 6.2.4.
-  signature (element)                                                         *special*           0-1     A digital signature asserting authorship and allowing verification of the integrity of the *\<xccdf:Profile\>*. See Section 6.2.7.
-  id (attribute)                                                              *special*           1       Unique identifier for this *\<xccdf:Profile\>*. See Section 6.2.3.
-  prohibitChanges (attribute)                                                 boolean             0-1     Whether or not products should prohibit changes to this *\<xccdf:Profile\>* (default: false).
-  abstract (attribute)                                                        boolean             0-1     If true, then this *\<xccdf:Profile\>* exists solely to be extended by other *\<xccdf:Profile\>* elements (default: false). See Sections 6.3.1 and 7.2.2.
-  note-tag (attribute)                                                        identifier          0-1     Tag identifier to specify which *\<xccdf:profile-note\>* element from an *\<xccdf:Rule\>* should be associated with this *\<xccdf:Profile\>.*
-  extends (attribute)                                                         identifier          0-1     The id of an *\<xccdf:Profile\>* on which to base this *\<xccdf:Profile\>.*
-  xml:base (attribute)                                                        *special*           0-1     The context for all relative URIs within the profile.
-  Id (attribute)                                                              *special*           0-1     An identifier used for referencing elements included in an XML signature. See Section 6.2.7.
++-----------------+-----------------+-----------------+-----------------+
+| Property        | Type            | Count           | Description     |
++=================+=================+=================+=================+
+| status          | *special*       | 0-n             | Status of this  |
+| (element)       |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*and         |
+|                 |                 |                 | date at which   |
+|                 |                 |                 | it attained     |
+|                 |                 |                 | that status.    |
+|                 |                 |                 | Authors may use |
+|                 |                 |                 | this element to |
+|                 |                 |                 | record the      |
+|                 |                 |                 | maturity or     |
+|                 |                 |                 | consensus level |
+|                 |                 |                 | of a profile.   |
+|                 |                 |                 | If the status   |
+|                 |                 |                 | is not given    |
+|                 |                 |                 | explicitly,     |
+|                 |                 |                 | then the        |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*            |
+|                 |                 |                 | is taken to     |
+|                 |                 |                 | have the same   |
+|                 |                 |                 | status as its   |
+|                 |                 |                 | parent          |
+|                 |                 |                 | *\<xccdf:Benchm |
+|                 |                 |                 | ark\>*.         |
+|                 |                 |                 | See Section     |
+|                 |                 |                 | 6.2.8.          |
++-----------------+-----------------+-----------------+-----------------+
+| dc-status       | *special*       | 0-n             | Holds           |
+| (element)       |                 |                 | additional      |
+|                 |                 |                 | status          |
+|                 |                 |                 | information     |
+|                 |                 |                 | using the       |
+|                 |                 |                 | Dublin Core     |
+|                 |                 |                 | format. See     |
+|                 |                 |                 | Section 6.2.8.  |
++-----------------+-----------------+-----------------+-----------------+
+| version         | string          | 0-1             | Version number  |
+| (element)       |                 |                 | of this         |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*,           |
+|                 |                 |                 | with an         |
+|                 |                 |                 | optional        |
+|                 |                 |                 | *\@time*        |
+|                 |                 |                 | timestamp       |
+|                 |                 |                 | attribute (when |
+|                 |                 |                 | the version was |
+|                 |                 |                 | completed) and  |
+|                 |                 |                 | an optional     |
+|                 |                 |                 | *\@update* URI  |
+|                 |                 |                 | attribute       |
+|                 |                 |                 | (where updates  |
+|                 |                 |                 | may be          |
+|                 |                 |                 | obtained).      |
++-----------------+-----------------+-----------------+-----------------+
+| title (element) | string          | 1-n             | Title of this   |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*.           |
+|                 |                 |                 | It may have one |
+|                 |                 |                 | or more         |
+|                 |                 |                 | *\<xccdf:sub\>* |
+|                 |                 |                 | elements (see   |
+|                 |                 |                 | Section 6.2.9), |
+|                 |                 |                 | an *\@xml:lang* |
+|                 |                 |                 | attribute (see  |
+|                 |                 |                 | Section         |
+|                 |                 |                 | 6.2.10), and/or |
+|                 |                 |                 | an *\@override* |
+|                 |                 |                 | attribute (see  |
+|                 |                 |                 | Section 6.3.1). |
++-----------------+-----------------+-----------------+-----------------+
+| description     | HTML-enabled    | 0-n             | Text that       |
+| (element)       | text            |                 | describes this  |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*.           |
+|                 |                 |                 | It MAY have one |
+|                 |                 |                 | or more         |
+|                 |                 |                 | *\<xccdf:sub\>* |
+|                 |                 |                 | elements (see   |
+|                 |                 |                 | Section 6.2.9), |
+|                 |                 |                 | an *\@override* |
+|                 |                 |                 | attribute (see  |
+|                 |                 |                 | Section 6.3.1), |
+|                 |                 |                 | and/or an       |
+|                 |                 |                 | *\@xml:lang*    |
+|                 |                 |                 | attribute (see  |
+|                 |                 |                 | Section         |
+|                 |                 |                 | 6.2.10).        |
++-----------------+-----------------+-----------------+-----------------+
+| reference       | *special*       | 0-n             | A reference     |
+| (element)       |                 |                 | where the user  |
+|                 |                 |                 | can learn more  |
+|                 |                 |                 | about the       |
+|                 |                 |                 | subject of this |
+|                 |                 |                 | profile. See    |
+|                 |                 |                 | Section 6.2.6.  |
++-----------------+-----------------+-----------------+-----------------+
+| platform        | string          | 0-n             | A target        |
+| (element)       |                 |                 | platform for    |
+|                 |                 |                 | this profile.   |
+|                 |                 |                 | See Section     |
+|                 |                 |                 | 6.2.5.          |
++-----------------+-----------------+-----------------+-----------------+
+| select,         | *special*       | 0-n             | References to   |
+| set-complex-val |                 |                 | Groups, Rules,  |
+| ue,             |                 |                 | and Values for  |
+| set-value,      |                 |                 | customization   |
+| refine-value,   |                 |                 | and tailoring.  |
+| refine-rule     |                 |                 | See Section     |
+| (element)       |                 |                 | 6.5.3.          |
++-----------------+-----------------+-----------------+-----------------+
+| metadata        | *special*       | 0-n             | Metadata        |
+| (element)       |                 |                 | associated with |
+|                 |                 |                 | this            |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*.           |
+|                 |                 |                 | See Section     |
+|                 |                 |                 | 6.2.4.          |
++-----------------+-----------------+-----------------+-----------------+
+| signature       | *special*       | 0-1             | A digital       |
+| (element)       |                 |                 | signature       |
+|                 |                 |                 | asserting       |
+|                 |                 |                 | authorship and  |
+|                 |                 |                 | allowing        |
+|                 |                 |                 | verification of |
+|                 |                 |                 | the integrity   |
+|                 |                 |                 | of the          |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*.           |
+|                 |                 |                 | See Section     |
+|                 |                 |                 | 6.2.7.          |
++-----------------+-----------------+-----------------+-----------------+
+| id (attribute)  | *special*       | 1               | Unique          |
+|                 |                 |                 | identifier for  |
+|                 |                 |                 | this            |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*.           |
+|                 |                 |                 | See Section     |
+|                 |                 |                 | 6.2.3.          |
++-----------------+-----------------+-----------------+-----------------+
+| prohibitChanges | boolean         | 0-1             | Whether or not  |
+| (attribute)     |                 |                 | products should |
+|                 |                 |                 | prohibit        |
+|                 |                 |                 | changes to this |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*            |
+|                 |                 |                 | (default:       |
+|                 |                 |                 | false).         |
++-----------------+-----------------+-----------------+-----------------+
++-----------------+-----------------+-----------------+-----------------+
+| abstract        | boolean         | 0-1             | If true, then   |
+| (attribute)     |                 |                 | this            |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*            |
+|                 |                 |                 | exists solely   |
+|                 |                 |                 | to be extended  |
+|                 |                 |                 | by other        |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*            |
+|                 |                 |                 | elements        |
+|                 |                 |                 | (default:       |
+|                 |                 |                 | false). See     |
+|                 |                 |                 | Sections 6.3.1  |
+|                 |                 |                 | and 7.2.2.      |
++-----------------+-----------------+-----------------+-----------------+
+| note-tag        | identifier      | 0-1             | Tag identifier  |
+| (attribute)     |                 |                 | to specify      |
+|                 |                 |                 | which           |
+|                 |                 |                 | *\<xccdf:profil |
+|                 |                 |                 | e-note\>*       |
+|                 |                 |                 | element from an |
+|                 |                 |                 | *\<xccdf:Rule\> |
+|                 |                 |                 | *               |
+|                 |                 |                 | should be       |
+|                 |                 |                 | associated with |
+|                 |                 |                 | this            |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>.*           |
++-----------------+-----------------+-----------------+-----------------+
+| extends         | identifier      | 0-1             | The id of an    |
+| (attribute)     |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*            |
+|                 |                 |                 | on which to     |
+|                 |                 |                 | base this       |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>.*           |
++-----------------+-----------------+-----------------+-----------------+
+| xml:base        | *special*       | 0-1             | The context for |
+| (attribute)     |                 |                 | all relative    |
+|                 |                 |                 | URIs within the |
+|                 |                 |                 | profile.        |
++-----------------+-----------------+-----------------+-----------------+
+| Id (attribute)  | *special*       | 0-1             | An identifier   |
+|                 |                 |                 | used for        |
+|                 |                 |                 | referencing     |
+|                 |                 |                 | elements        |
+|                 |                 |                 | included in an  |
+|                 |                 |                 | XML signature.  |
+|                 |                 |                 | See Section     |
+|                 |                 |                 | 6.2.7.          |
++-----------------+-----------------+-----------------+-----------------+
 
 ### Selectors
 
