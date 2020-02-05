@@ -3427,6 +3427,18 @@ Table 21 describes the *\<xccdf:Profile\>* element's properties.
 |                 |                 |                 | (default:       |
 |                 |                 |                 | false).         |
 +-----------------+-----------------+-----------------+-----------------+
+| profileOrdering | boolean         | 0-1             | If true, then   |
+| (attribute)     |                 |                 | processing of   |
+|                 |                 |                 | the profile is  |
+|                 |                 |                 | ordered by the  |
+|                 |                 |                 | *\<xccdf:select |
+|                 |                 |                 | \>*             |
+|                 |                 |                 | elements as     |
+|                 |                 |                 | they are listed |
+|                 |                 |                 | from top to     |
+|                 |                 |                 | bottom in the   |
+|                 |                 |                 | *\<xccdf:Profil |
+|                 |                 |                 | e\>*            |
 +-----------------+-----------------+-----------------+-----------------+
 | abstract        | boolean         | 0-1             | If true, then   |
 | (attribute)     |                 |                 | this            |
