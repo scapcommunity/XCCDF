@@ -988,7 +988,7 @@ The example below shows an_\<xccdf:complex-check\>_ with several components.
 
 The _\<xccdf:checktext\>_ element can be used to supply additional guidance to the reader. For example:
 
-- description of what a check actuall does
+- description of what a check actual does
 - information about limitations of the check
 - guidance on how to interpret check results
 
