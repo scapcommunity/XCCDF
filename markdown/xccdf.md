@@ -778,6 +778,7 @@ Table 5 describes the properties common to all three classes of items: _\<xccdf:
 | --- | --- | --- | --- |
 | dc-status (element) | _special_ | 0-n | Holds additional status information using the Dublin Core format. See Section 6.2.8. |
 | version (element) | string | 0-1 | Version number of the item, with an optional_@time_ timestamp attribute (when the version was completed) and an optional_@__update_ URI attribute (where updates may be obtained). |
+| history (element) | _special_ | 0-1 | Holds the change history of the item in form of a sub element for each version in which a change to the item occured. See Section 6.4.1.1. |
 | title (element) | string | 0-n | Title of the item. Every item should have a title, because this helps people understand the purpose of the item. It may have one or more _\<xccdf:sub\>_ elements (see Section 6.2.9), an _@__xml:lang_ attribute (see Section 6.2.10), and/or an _@override_ attribute (see Section 6.3.1). |
 | description (element) | HTML-enabled text | 0-n | Text that describes the item. It MAY have one or more _\<xccdf:sub\>_ elements (see Section 6.2.9), an _@override_ attribute (see Section 6.3.1), and/or an _@__xml:lang_ attribute (see Section 6.2.10). |
 | warning (element) | HTML-enabled text | 0-n | A note or caveat about the item intended to convey important cautionary information for the benchmark user (e.g., "Complying with this rule will cause the system to reject all IP packets"). If multiple warning elements appear, benchmark consumers should concatenate them for generating reports or documents. Benchmark consumers may present this information in a special manner in generated documents.It MAY have one or more _\<xccdf:sub\>_ elements (see Section 6.2.9), an _@override_ attribute (see Section 6.3.1), and/or an _@__xml:lang_ attribute (see Section 6.2.10). Also, see Section 6.4.2 for the possible values of the warning element's optional_@__category_ attribute, which provides a hint as to the nature of the warning. |
@@ -806,6 +807,33 @@ In addition to the properties listed in Table 5, _\<xccdf:Group\>_ and _\<xccdf:
 | conflicts (element) | identifier | 0-n | The identifier of another _\<xccdf:Group\>_ or _\<xccdf:Rule\>_ in the _\<xccdf:Benchmark\>_ that must be unselected for this group/rule to be evaluated and scored properly. Each _\<xccdf:conflicts\>_ element specifies a single conflicting item using its _@__idref_ attribute. If the specified _\<xccdf:Group\>_ or _\<xccdf:Rule\>_ element is not selected, the requirement is met. |
 | selected (attribute) | boolean | 0-1 | If true, this group/rule shall be selected to be processed as part of the _\<xccdf:Benchmark\>_ when it is applied to a target system (default: true). An unselected group shall not be processed, and its contents shall NOT be processed either (i.e., all descendants of an unselected group are implicitly unselected). An unselected rule shall not be checked and shall not contribute to scoring. May be overridden by a profile; see Section 6.5.3. |
 | weight (attribute) | decimal | 0-1 | The relative scoring weight of this group/rule, for computing a score, expressed as a non-negative real number (0.0 or greater, maximum 3 digits, default 1.0). It denotes the importance of a group/rule. Under some scoring models, scoring is computed independently for each collection of sibling groups and rules, then normalized as part of the overall scoring process. See Section 7.3.2 for more information on scoring. May be overridden by a profile; see Section 6.5.3. |
+
+#### 6.4.1.1 \<xccdf:history\> Element
+
+XCCDF items can carry an item-specific change history. It contains 0-n \<xccdf:change\> elements;
+a \<xccdf:change\> element has the following properties:
+
+**Table TODO_change_element: \<xccdf:history\> Element Properties**
+
+| Property | Type | Count | Description |
+| --- | --- | --- | --- |
+| description (element) | HTML-enabled text | 0-n | Text that describes the change. It MAY have an _@__xml:lang_ attribute (see Section 6.2.10). |
+| version (attribute) | string | 1 | Version number of the item. |
+| time (attribute) | timestamp | 0-1 | Time when the version that contains this changed was completed (in UTC ISO 8601 format).|
+| action | string | 1 | One of `created`, `revised`, `modified`, and `removed`. See table TODO_change_action_attriute. |
+
+An _\<xccdf:change\>_ element MAY also have additional attributes from schemas other than the XCCDF schema.
+
+**Table TODO_change_action_attribute: \<xccdf:change\> Element @action Attribute Values**
+
+| Value | Meaning |
+| --- | --- |
+| created |  The item has been created.
+| revised |  The item has been revised in a way that does not constitute a significant change, e.g., the removal of an obvious typo (i.e., a typo that did not lead to misinterpretations of the item), an added clarifiation, etc. | 
+| modified |  A significant change. |
+| removed | The item has been removed, e.g. by setting the item's `hidden` attribute. |
+
+An _\<xccdf:change\>_ element MAY also have additional attributes from schemas other than the XCCDF schema used for organization-specific purposes in tracking changes (e.g., tracking the author of a change).
 
 ### 6.4.2\<xccdf:warning\> Element
 
