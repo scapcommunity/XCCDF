@@ -57,7 +57,7 @@ _Note: the following are not customizable: `<Profile>`, `<Value>`, `<Group>`, `<
 <refine-benchmark style="scap_12">
 
 	<title>My Custom Title Here</title>
-	<title xml:lang="fr">My Title (in French)</title>
+	<title xml:lang="fr">Un titre supérieur</title>
 	
 </refine-benchmark>
 ```
