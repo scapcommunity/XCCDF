@@ -896,7 +896,7 @@ May be overridden by a profile; see Section 6.5.3. |
 
 #### 6.4.4.3\<xccdf:ident\> Elements
 
-Table 10 lists assigned URIs that may appear as the value of the _@system_ attribute of an _\<xccdf:ident\>_ element. If an identification system included in Table 10 is being specified, the _@system_ attribute's value SHALL correspond to the appropriate URI in the table. An author may create a new URI for an identification system not listed in the table; this URI shall not duplicate any of the Table 10 URI values.
+Table 10 lists assigned URIs that may appear as the value of the _@system_ attribute of an _\<xccdf:ident\>_ element. If an identification system included in Table 10 is being specified, the _@system_ attribute's value SHALL correspond to the appropriate URI in the table. 
 
 **Table 10: Assigned Values for the @system Attribute of an \<xccdf:ident\> Element**
 
@@ -909,7 +909,71 @@ Table 10 lists assigned URIs that may appear as the value of the _@system_ attri
 | http://www.kb.cert.org | US-CERT vulnerability notes database – the identifier value should be a vulnerability note number (e.g., "709220") |
 | http://www.us-cert.gov/cas/techalerts | US-CERT technical cyber security alerts – the identifier value should be a technical cyber security alert ID (e.g., "TA05-189A") |
 
+An author may create a new URI for an identification system not listed in the table; this URI shall not duplicate any of the Table 10 URI values.
+
+In particular, organizations that issue XCCDF benchmarks should define
+an organization-specific URIs denoting a *lifetime reference
+identifier* for the rule and provide such a lifetime reference
+identifier for each rule using this URI.
+
+1. In different versions of a benchmark, the rule's lifetime reference identifier must stay
+   the same, if the new version of the rule is concerned with the
+   same issue (even though the prescribed requirement may have changed).
+
+   Exceptions may occur in the following cases:
+
+   a. Keeping the reference identifier unchanged would lead to
+      confusion (e.g., because the reference identifier carries
+      semantics and a rule change would lead to a contradiction
+      between what a user would understand when looking at the
+      reference identifier and the actual contents of the rule.)
+
+   b. There is no clear one-to-one relationship between the old
+      version of a rule and a corresponding rule in the new version of
+      the baseline (e.g., because a rule has been re-factored into many
+      rules.)
+
+
+2. In case of exception 1a or 1b, information about the relationship between
+   rule lifetime reference identifiers in an older version of a benchmark
+   to a rule's current lifetime reference identifier must be provided in form
+   of additional \<xccdf:ident\> elements that use the
+   organization-specific lifetime reference identifier as follows:
+
+   a. If the reference identifier had to be changed to avoid confusion (exception 1a),
+      a relationship to the former lifetime reference identifier
+      is to be provided with an additional \<xccdf:ident\> element that specifies
+      the former lifetime reference identifiers and
+      carries the additional XML attribute `@historic` and value `outdated`.
+
+   b. If there is no one-to-one relationship (exception 1b),
+      a relationship to one or more other lifetime reference identifiers
+      is to be provided with an additional \<xccdf:ident\> element for
+      each of these related lifetime reference identifiers that
+      carries the additional XML attribute `@historic` and value `related`
+
+      Organizations may define organization-specific additional attributes
+      in order to provide additional information about the nature of
+      such a relationship.
+
+3. Lifetime reference identifiers must not be reused/reassigned from one issue to an
+   unrelated issue.
+
+Ideally, the syntax of rule lifetime reference identifiers should be
+chosen such that (1) it carries no semantics (to avoid occurrences
+that lead to exception 1a above) and (2) the lifetime reference
+identifier is of a form and length such that humans are able to use it
+for referring to a rule. Therefore, lifetime reference identifiers
+should take the form of an organization-specific rule-enumeration
+(e.g., `R12343`, `BL636-40016`, ...) rather than slugs derived from
+the rule contents (e.g., `configure_password_length`, or
+`disable_foo_service`) or overly long strings such as UUIDs, hashes,
+etc.
+
+
 An _\<xccdf:ident\>_ element MAY also have additional attributes from schemas other than the XCCDF schema. Individual organizations and standards MAY associate specific interpretations of rules based on the value of an _\<xccdf:ident\>_ element and these additional attributes are allowed in order to refine those interpretations. These additional attributes MUST NOT alter the processing of a benchmark document as described in Section 7, although they MAY be added to the output of Document Generation or displayed to users during processing.
+
+
 
 #### 6.4.4.4\<xccdf:check\> and \<xccdf:complex-check\>Elements
 
