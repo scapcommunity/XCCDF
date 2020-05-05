@@ -1557,30 +1557,48 @@
         </xsd:complexContent>
     </xsd:complexType>
 
-    <xsd:complexType name="fixType" mixed="true">
+    <xsd:complexType name="fixType"> <!-- PROPOSED: REMOVED 'mixed="true"' -->
         <xsd:annotation>
             <xsd:documentation xml:lang="en"> Data type for the &lt;xccdf:fix&gt; element. The body
                 of this element contains a command string, script, or other system modification
                 statement that, if executed on the target system, can bring it into full, or at
                 least better, compliance with this &lt;xccdf:Rule&gt;. </xsd:documentation>
         </xsd:annotation>
-        <xsd:choice minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="sub" type="cdf:subType">
+        <!-- PROPOSED -->
+        <xsd:sequence>
+            <xsd:element name="fix-export" type="cdf:fixExportType" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <xsd:documentation xml:lang="en">Specifies an &lt;xccdf:Value&gt; or
-                        &lt;xccdf:plain-text&gt; element to be used for text substitution
-                    </xsd:documentation>
+                    <xsd:documentation xml:lang="en">A mapping from an &lt;xccdf:Value&gt; element
+                        to a fix system variable (i.e., external name or id for use by the
+                        checking system). This supports export of tailoring values from the XCCDF
+                        processing environment to the fix system.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="instance" type="cdf:instanceFixType">
+            <xsd:element name="fix-content-ref" type="cdf:fixContentRefType" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <xsd:documentation xml:lang="en">Designates a spot where the name of the
-                        instance should be substituted into the fix template to generate the final
-                        fix data. If the @context attribute is omitted, the value of the @context
-                        defaults to “undefined”.</xsd:documentation>
+                    <xsd:documentation xml:lang="en">Points to code for a detached fix in another
+                        location that uses the language or system specified by the
+                        &lt;xccdf:fix&gt; element’s @system attribute. If multiple
+                        &lt;xccdf:fix-content-ref&gt; elements appear, they represent alternative
+                        locations from which a benchmark consumer may obtain the fix content.
+                        Benchmark consumers should process the alternatives in the order in which
+                        they appear in the XML. The first &lt;xccdf:fix-content-ref&gt; from which
+                        content can be successfully retrieved should be used.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-        </xsd:choice>
+            <xsd:element name="fix-content" type="cdf:fixContentType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Holds the actual code of a fix, in the
+                        language or system specified by the &lt;xccdf:fix&gt; element’s @system
+                        attribute. If both &lt;xccdf:fix-content-ref&gt; and
+                        &lt;xccdf:fix-content&gt; elements appear in a single &lt;xccdf:fix&gt;
+                        element, benchmark consumers should use the &lt;xccdf:fix-content&gt;
+                        element only if none of the references can be resolved to provide
+                        content.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+        <!-- /PROPOSED -->
         <xsd:attribute name="id" type="xsd:NCName" use="optional">
             <xsd:annotation>
                 <xsd:documentation xml:lang="en">A local identifier for the element. It is optional
@@ -1637,7 +1655,94 @@
             </xsd:annotation>
         </xsd:attribute>
     </xsd:complexType>
-
+    
+    <!-- PROPOSED -->
+    <xsd:complexType name="fixExportType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en"> Data type for the &lt;xccdf:fix-export&gt; element,
+                which specifies a mapping from an &lt;xccdf:Value&gt; element to a remediation system
+                variable (i.e., external name or id for use by the fix system). This supports
+                export of tailoring &lt;xccdf:Value&gt; elements from the XCCDF processing
+                environment to the fix system. The interface between the XCCDF benchmark
+                consumer and the fix system should support, at a minimum, passing the
+                &lt;xccdf:value&gt; property of the &lt;xccdf:Value&gt; element, but may also
+                support passing the &lt;xccdf:Value&gt; element's @type and @operator
+                properties.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="value-id" type="xsd:NCName" use="required">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">The id of the &lt;xccdf:Value&gt; element to export.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="export-name" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">An identifier indicating some structure in the
+                    fix system into which the identified &lt;xccdf:Value&gt; element's
+                    properties will be mapped. </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    
+    <xsd:complexType name="fixContentRefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en"> Data type for the &lt;xccdf:fix-content-ref&gt;
+                element, which points to the code for a detached fix in another file. This element
+                has no body, just a number of attributes: @href, @name, and @media-type. The @name is optional, if
+                it does not appear then this reference is to the entire document. The @media-type is optional as well, 
+                only applicable when the @href value points to a compressed file.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="href" type="xsd:anyURI" use="required">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">Identifies the referenced document containing
+                    fix instructions. </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="name" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">Identifies a particular part or element of the
+                    referenced fix document. </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="media-type" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+                    Applicable in cases where &lt;xccdf:fix-content-ref&gt; is used and the @href 
+                    attribute points to a compressed file.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    
+    <xsd:complexType name="fixContentType" mixed="true">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en"> Data type for the &lt;xccdf:fix-content&gt; element.
+                The body of this element holds the actual code of a fix, in the language or system
+                specified by the &lt;xccdf:fix&gt; element’s @system attribute. The body of this
+                element may be any content, but cannot contain any XCCDF elements. XCCDF tools do not
+                process its content directly but instead pass the content directly to fixing/remediation
+                engines. </xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="sub" type="cdf:subType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Specifies an &lt;xccdf:Value&gt; or
+                        &lt;xccdf:plain-text&gt; element to be used for text substitution
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="instance" type="cdf:instanceFixType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Designates a spot where the name of the
+                        instance should be substituted into the fix template to generate the final
+                        fix data. If the @context attribute is omitted, the value of the @context
+                        defaults to “undefined”.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <!-- /PROPOSED -->
+    
     <xsd:simpleType name="fixStrategyEnumType">
         <xsd:annotation>
             <xsd:documentation xml:lang="en"> Allowed @strategy keyword values for an
