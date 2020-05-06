@@ -2694,27 +2694,44 @@ Attribute of \<xccdf:fix\> Element
 |                                   | should bring the target system    |
 |                                   | into compliance with the rule.    |
 |                                   | The following languages are       |
-|                                   | pre-defined:                      |
+|                                   | predefined:                       |
 |                                   |                                   |
-|                                   | sh -- Bourne shell                |
+|                                   | anaconda - Anaconda Installer     |
+|                                   |                                   |
+|                                   | bash -- Bourne Again SHell        |
+|                                   |                                   |
+|                                   | batch -- Windows batch script     |
 |                                   |                                   |
 |                                   | csh -- C Shell                    |
 |                                   |                                   |
 |                                   | perl -- Perl                      |
 |                                   |                                   |
-|                                   | batch -- Windows batch script     |
+|                                   | powershell -- PowerShell          |
 |                                   |                                   |
 |                                   | python -- Python and all          |
-|                                   | Python-based scripting languages  |
-|                                   |                                   |
-|                                   | vbscript -- Visual Basic Script   |
-|                                   | (VBS)                             |
+|                                   | Python-based scripting languages  |                          |
 |                                   |                                   |
 |                                   | javascript -- Javascript          |
 |                                   | (ECMAScript, Jscript)             |
 |                                   |                                   |
+|                                   | sh -- Bourne shell                |
+|                                   |                                   |
 |                                   | tcl -- Tcl and all Tcl-based      |
 |                                   | scripting languages               |
+|                                   |                                   |
+|                                   | vbscript -- Visual Basic Script   |
+|                                   | (VBS)                             |
+|                                   |                                   |
+|                                   | As the languages above are not an |
+|                                   | exhaustive list and are           |
+|                                   | predefined, the word *language*   |
+|                                   | in the URI can be replaced with   |
+|                                   | newly chosen scripting language.  |
+|                                   | For example,                      |
+|                                   | *urn:xccdf:fix:script:language*   |
+|                                   | would become                      |
+|                                   | *urn:xccdf:fix:script:new\_script |
+|                                   | ing\_language*.                   |
 +-----------------------------------+-----------------------------------+
 | urn:xccdf:fix:patch:*vendor*      | A patch identifier, in            |
 |                                   | proprietary format as defined by  |
