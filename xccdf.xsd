@@ -1571,7 +1571,9 @@
                     <xsd:documentation xml:lang="en">A mapping from an &lt;xccdf:Value&gt; element
                         to a fix system variable (i.e., external name or id for use by the
                         checking system). This supports export of tailoring values from the XCCDF
-                        processing environment to the fix system.</xsd:documentation>
+                        processing environment to the fix system.  The fix-export is analogous to the
+                        &lt;xccdf:check-export&gt; allowing XCCDF Values to be passed to the external 
+                        content referenced by a &lt;xccdf:fix-content-ref&gt;</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="fix-content-ref" type="cdf:fixContentRefType" minOccurs="0" maxOccurs="unbounded">
