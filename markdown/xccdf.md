@@ -819,7 +819,7 @@ a \<xccdf:change\> element has the following properties:
 | --- | --- | --- | --- |
 | description (element) | HTML-enabled text | 0-n | Text that describes the change. It MAY have an _@__xml:lang_ attribute (see Section 6.2.10). |
 | version (attribute) | string | 1 | Version number of the item. |
-| time (attribute) | timestamp | 0-1 | Time when the version that contains this changed was completed (in UTC ISO 8601 format).|
+| time (attribute) | timestamp | 0-1 | Time when the version that contains this change was completed (in UTC ISO 8601 format).|
 | action | string | 1 | One of `created`, `revised`, `modified`, and `removed`. See table TODO_change_action_attribute. |
 
 **Table TODO_change_action_attribute: \<xccdf:change\> Element @action Attribute Values**
