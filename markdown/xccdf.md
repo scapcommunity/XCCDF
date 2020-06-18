@@ -955,13 +955,13 @@ identifier for each rule using this URI. The system URI SHOULD have a prefix
       carries the additional XML attribute `@relation` and value `related`
 
 
-   | ** Value of relation attribute ** | Intended semantics  |
+   | Value of relation attribute | Intended semantics  |
    | --- | --- |
    | superseded | The specified LRI used to refer to this rule in a previous version of the baseline |
-   | formerly_part_of | This rule defines an aspect which used to be part of the rule with the specified LRI |
-   | contains | This rule contains an aspect which used to be covered in the rule with the specified LRI |
-   | refactored_from | This rule originiated by refactoring the rule with the specified LRI but the nature of the relationship cannot be described properly with `formerly_part_of` or `contains` |
-   | related | This rule is related to the rule with the specified LRI contained in a previous version of the baseline, but none of the above values precisely capture this relationship |
+   | formerly_part_of | This rule defines an aspect which used to be treated (amongst other aspects) within the referenced rule |
+   | contains | Among other aspects, this rule contains an aspect that used to be treated in the referenced rule |
+   | refactored_from | This rule originiated by refactoring the referenced rule, but the nature of the relationship cannot be described properly with `formerly_part_of` or `contains` |
+   | related | This rule is related to the referenced rule in a previous version of the baseline, but none of the above values precisely capture this relationship |
 
    Organizations may define organization-specific additional attributes
    in order to provide additional information about the nature of
