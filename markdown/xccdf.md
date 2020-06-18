@@ -911,12 +911,14 @@ Table 10 lists assigned URIs that may appear as the value of the _@system_ attri
 
 An author may create a new URI for an identification system not listed in the table; this URI shall not duplicate any of the Table 10 URI values.
 
-In particular, organizations that issue XCCDF benchmarks should define
-an organization-specific URIs denoting a *lifetime reference
-identifier* for the rule and provide such a lifetime reference
-identifier for each rule using this URI.
+In particular, organizations that issue XCCDF benchmarks SHOULD define
+an organization-specific URIs denoting a *lifetime resource 
+identifier* (LRI) for the rule and provide such a lifetime resource SHOULD
+identifier for each rule using this URI. The system URI SHOULD have a prefix
+`uri:xccdf:lri:` followed by a an URI part that identifies the organization.
 
-1. In different versions of a benchmark, the rule's lifetime reference identifier must stay
+
+1. In different versions of a benchmark, the rule's lifetime identifier must stay
    the same, if the new version of the rule is concerned with the
    same issue (even though the prescribed requirement may have changed).
 
@@ -944,17 +946,26 @@ identifier for each rule using this URI.
       a relationship to the former lifetime reference identifier
       is to be provided with an additional \<xccdf:ident\> element that specifies
       the former lifetime reference identifiers and
-      carries the additional XML attribute `@historic` and value `outdated`.
+      carries the additional XML attribute `@relation` and value `superseded`.
 
    b. If there is no one-to-one relationship (exception 1b),
       a relationship to one or more other lifetime reference identifiers
       is to be provided with an additional \<xccdf:ident\> element for
       each of these related lifetime reference identifiers that
-      carries the additional XML attribute `@historic` and value `related`
+      carries the additional XML attribute `@relation` and value `related`
 
-      Organizations may define organization-specific additional attributes
-      in order to provide additional information about the nature of
-      such a relationship.
+
+   | ** Value of relation attribute ** | Intended semantics  |
+   | --- | --- |
+   | superseded | The specified LRI used to refer to this rule in a previous version of the baseline |
+   | formerly_part_of | This rule defines an aspect which used to be part of the rule with the specified LRI |
+   | contains | This rule contains an aspect which used to be covered in the rule with the specified LRI |
+   | refactored_from | This rule originiated by refactoring the rule with the specified LRI but the nature of the relationship cannot be described properly with `formerly_part_of` or `contains` |
+   | related | This rule is related to the rule with the specified LRI contained in a previous version of the baseline, but none of the above values precisely capture this relationship |
+
+   Organizations may define organization-specific additional attributes
+   in order to provide additional information about the nature of
+   such a relationship.
 
 3. Lifetime reference identifiers must not be reused/reassigned from one issue to an
    unrelated issue.
@@ -970,6 +981,15 @@ the rule contents (e.g., `configure_password_length`, or
 `disable_foo_service`) or overly long strings such as UUIDs, hashes,
 etc.
 
+Here are some examples of an LRI specifications, providing an LRI
+of a given rule along with references to two rules which were refactored
+into the present rule.
+
+~~~
+<ident system="urn:lri:acme.org">BL636-47115</ident>
+<ident system="urn:lri:acm.org" rel="contains">BL636-47110</ident>
+<ident system="urn:lri:acm.org" rel="contains">BL636-47120</ident>
+~~~
 
 An _\<xccdf:ident\>_ element MAY also have additional attributes from schemas other than the XCCDF schema. Individual organizations and standards MAY associate specific interpretations of rules based on the value of an _\<xccdf:ident\>_ element and these additional attributes are allowed in order to refine those interpretations. These additional attributes MUST NOT alter the processing of a benchmark document as described in Section 7, although they MAY be added to the output of Document Generation or displayed to users during processing.
 
