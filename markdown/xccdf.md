@@ -963,9 +963,10 @@ identifier for each rule using this URI. The system URI SHOULD have a prefix
    | refactored_from | This rule originiated by refactoring the referenced rule, but the nature of the relationship cannot be described properly with `formerly_part_of` or `contains` |
    | related | This rule is related to the referenced rule in a previous version of the baseline, but none of the above values precisely capture this relationship |
 
-   Organizations may define organization-specific additional attributes
-   in order to provide additional information about the nature of
-   such a relationship.
+   Organizations may define organization-specific additional
+   attributes from other schemas than the XCCDF schema in order to
+   provide additional information about the nature of such a
+   relationship.
 
 3. Lifetime reference identifiers must not be reused/reassigned from one issue to an
    unrelated issue.
