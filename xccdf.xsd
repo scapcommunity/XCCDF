@@ -1316,6 +1316,16 @@
                                 this &lt;xccdf:Rule&gt;.</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="checktext" type="cdf:checkTextType" minOccurs="0"
+                        maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">Supplementary information on checks
+                                (e.g., description of what the check does, guidance in 
+                                interpreting the results of a check, etc.). Each &lt;xccdf:checktext&gt;
+                                element may be associated with one or more &lt;xccdf:check&gt; element
+                                values.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                     <xsd:choice>
                         <xsd:element name="check" type="cdf:checkType" minOccurs="0"
                             maxOccurs="unbounded">
@@ -2076,7 +2086,24 @@ NOT || P | F | U | E | N | K | S | I ||
             <xsd:any namespace="##other" processContents="skip"/>
         </xsd:choice>
     </xsd:complexType>
-
+    <xsd:complexType name="checkTextType" mixed="true">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Data type for the &lt;xccdf:checktext&gt; element, which
+                provides supplementary guidance about an &lt;xccdf:check&gt;. Information may include 
+                the description of what the check actually does, information about limitations
+                of the check, and guidance on how to interpret check results.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cdf:htmlTextWithSubType">
+                <xsd:attribute name="checkref" type="xsd:NCName" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A reference to the @id of an
+                            &lt;xccdf:check&gt; element.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
     <xsd:simpleType name="weightType">
         <xsd:annotation>
             <xsd:documentation xml:lang="en"> Data type for an &lt;xccdf:Rule&gt; element's weight,
