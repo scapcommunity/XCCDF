@@ -2086,10 +2086,11 @@ NOT || P | F | U | E | N | K | S | I ||
             <xsd:any namespace="##other" processContents="skip"/>
         </xsd:choice>
     </xsd:complexType>
+    
     <xsd:complexType name="checkTextType" mixed="true">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">Data type for the &lt;xccdf:checktext&gt; element, which
-                provides supplementary guidance about an &lt;xccdf:check&gt;. Information may include 
+                provides supplementary guidance about a &lt;xccdf:check&gt;. Information may include 
                 the description of what the check actually does, information about limitations
                 of the check, and guidance on how to interpret check results.</xsd:documentation>
         </xsd:annotation>
