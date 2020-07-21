@@ -610,8 +610,8 @@ Elements that support the _\<xccdf:metadata\>_ element MAY use any desired metad
 
 Metadata is a powerful feature for authors. However, XCCDF puts some limits on the use of metadata:
 
-- Metadata shOULD not replace the functionality of existing fields within XCCDF. If the information matches the common use of some other XCCDF field, the information must appear in that XCCDF field. It MAY also appear in the _\<xccdf:metadata\>_ element.
-- Metadata shall not change the processing model as outlined in Section 7. Benchmark consumer products shall perform XCCDF assessments in the same way regardless of the presence of metadata. Metadata may still be used to support assessment features that are outside the purview of XCCDF—for example, to hold post-processing instructions to be performed on the completed XCCDF resultsor to display additional information to the user before or during the assessment.
+- Metadata SHOULD not replace the functionality of existing fields within XCCDF. If the information matches the common use of some other XCCDF field, the information must appear in that XCCDF field. It MAY also appear in the _\<xccdf:metadata\>_ element.
+- Metadata shall not change the processing model as outlined in Section 7. Benchmark consumer products shall perform XCCDF assessments in the same way regardless of the presence of metadata. Metadata may still be used to support assessment features that are outside the purview of XCCDF—for example, to hold post-processing instructions to be performed on the completed XCCDF results or to display additional information to the user before or during the assessment.
 - Metadata SHOULD not alter the character content of the XCCDF properties used to generate output during document generation. Contents of the _\<xccdf:metadata\>_ element MAY be added to the output above and beyond the XCCDF properties. Metadata may contain instructions that cause different stylistic conventions to be adopted in the conversion of an XCCDF document to prose.
 
 ### 6.2.5Platform Names
