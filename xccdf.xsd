@@ -645,7 +645,7 @@
                 <xsd:attribute name="time" type="xsd:dateTime" use="optional">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">The time that this version of the
-                            associated element was completed. </xsd:documentation>
+                            associated element was completed in the UTC ISO 8601 format. </xsd:documentation>
                     </xsd:annotation>
                 </xsd:attribute>
                 <xsd:attribute name="update" type="xsd:anyURI" use="optional">
@@ -3125,13 +3125,13 @@ NOT || P | F | U | E | N | K | S | I ||
         </xsd:attribute>
         <xsd:attribute name="start-time" type="xsd:dateTime" use="optional">
             <xsd:annotation>
-                <xsd:documentation xml:lang="en">Time when testing began.</xsd:documentation>
+                <xsd:documentation xml:lang="en">Time when testing began in the UTC ISO 8601 format.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="end-time" type="xsd:dateTime" use="required">
             <xsd:annotation>
                 <xsd:documentation xml:lang="en">Time when testing was completed and the results
-                    recorded. </xsd:documentation>
+                    recorded in the UTC ISO 8601 format. </xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="test-system" type="xsd:string" use="optional">
@@ -3330,7 +3330,7 @@ NOT || P | F | U | E | N | K | S | I ||
             <xsd:annotation>
                 <xsd:documentation xml:lang="en">The value of the @time attribute in the
                     &lt;xccdf:Tailoring&gt; element's &lt;xccdf:version&gt;
-                    property.</xsd:documentation>
+                    property in the UTC ISO 8601 format.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
     </xsd:complexType>
@@ -3440,7 +3440,7 @@ NOT || P | F | U | E | N | K | S | I ||
         <xsd:attribute name="time" type="xsd:dateTime" use="optional">
             <xsd:annotation>
                 <xsd:documentation xml:lang="en">Time when application of this instance of the
-                    referenced &lt;xccdf:Rule&gt; was completed. </xsd:documentation>
+                    referenced &lt;xccdf:Rule&gt; was completed in the UTC ISO 8601 format. </xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="version" type="xsd:string" use="optional">
@@ -3518,7 +3518,7 @@ NOT || P | F | U | E | N | K | S | I ||
         </xsd:sequence>
         <xsd:attribute name="time" type="xsd:dateTime" use="required">
             <xsd:annotation>
-                <xsd:documentation xml:lang="en">When the override was applied. </xsd:documentation>
+                <xsd:documentation xml:lang="en">When the override was applied in the UTC ISO 8601 format. </xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="authority" type="xsd:string" use="required">
@@ -3878,7 +3878,7 @@ NOT || P | F | U | E | N | K | S | I ||
                 <xsd:attribute name="time" type="xsd:dateTime" use="required">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">The time when this version of the
-                            &lt;xccdf:Tailoring&gt; document was completed. </xsd:documentation>
+                            &lt;xccdf:Tailoring&gt; document was completed in the UTC ISO 8601 format. </xsd:documentation>
                     </xsd:annotation>
                 </xsd:attribute>
             </xsd:extension>
