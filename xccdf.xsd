@@ -1412,6 +1412,12 @@
                             that assigned the identifier. </xsd:documentation>
                     </xsd:annotation>
                 </xsd:attribute>
+                <xsd:attribute name="rel" type="cdf:relEnumType" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">Denotes the relationship between 
+                            identifiers.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
                 <xsd:anyAttribute namespace="##other" processContents="lax">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">May also have other attributes from other
@@ -1422,6 +1428,48 @@
             </xsd:extension>
         </xsd:simpleContent>
     </xsd:complexType>
+
+    <xsd:simpleType name="relEnumType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Allowed relationship type keywords for the 
+                &lt;xccdf:ident&gt; element used in &lt;xccdf:Rule&gt; elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="superseded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">The specified LRI used to refer to this 
+                        rule in a previous version of the baseline.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="formerly_part_of">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">This rule defines an aspect which used to 
+                        be treated (amongst other aspects) within the referenced rule.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="contains">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Among other aspects, this rule contains an 
+                        aspect that used to be treated in the referenced rule.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="refactored_from">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">This rule originiated by refactoring the 
+                        referenced rule, but the nature of the relationship cannot be described 
+                        properly with 'formerly_part_of' or 'contains'.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="related">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">This rule is related to the referenced rule 
+                        in a previous version of the baseline, but none of the above values 
+                        precisely capture this relationship.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:complexType name="warningType" mixed="true">
         <xsd:annotation>
