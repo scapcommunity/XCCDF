@@ -1024,18 +1024,19 @@ Table 16 lists the possible properties of an _\<xccdf:fix\>_ element.
 
 **Table 16: Possible Properties for \<xccdf:fix\> Element**
 
-| Property | Type | Count | Description |
-| --- | --- | --- | --- |
-| sub (element) | identifier | 0-n | Specifies an _\<xccdf:Value\>_ or _\<xccdf:plain-text\>_ substitution. See Section 6.2.9. |
-| --- | --- | --- | --- |
-| instance (element) | string | Designates a spot where the name of the instance should be substituted into the fix template to generate the final fix data. If the _@__context_ attribute is omitted, the value of the context shalldefault to "undefined". |
-| id (attribute) | identifier | 0-1 | A local identifier for the element. It is optional for the id to be unique; multiple_\<xccdf:fix\>_ elements may have the same id but different values for their other attributes. |
-| reboot (attribute) | boolean | 0-1 | Whether or not remediation will require a reboot or hard reset of the target. Permitted values: true (1) and false (0) (default: 0). |
-| strategy (attribute) | string | 0-1 | The method or approach for fixing the problem. See Table 15 for the list of possible values. |
-| disruption (attribute) | string | 0-1 | An estimate of the potential for disruption or operational degradation that the application of this fix will impose on the target.See Table 15 for the list of possible values. |
-| complexity (attribute) | string | 0-1 | The estimated complexity or difficulty of applying the fix to the target.See Table 15 for the list of possible values. |
-| system (attribute) | URI | 0-1 | A URI that identifies the scheme, language, engine, or process for which the fix contents are written. Table 17 defines several general-purpose URNs that may be used for this, and tool vendors and system providers may define and use target-specific URNs. |
-| platform (attribute) | URI | 0-1 | In case different fix scripts or procedures are required for different target platform types (e.g., different patches for Windows Vista and Windows 7), this attribute allows a CPE name or CPE applicability language expression to be associated with an _\<xccdf:fix\>_element. This should appear on an _\<xccdf:fix\>_ when the content applies to only one platform out of several to which the rule could apply. |
+| Property                  | Type       | Count | Description |
+| ------------------------- | ---------- | ----- | ----------- |
+| fix-export (element)      | _special_  | 0-n   | A mapping from an _\<xccdf:Value\>_ element to a fix system variable (i.e., external name or id for use by the checking system). This supports export of tailoring values from the XCCDF processing environment to the fix system.|
+| fix-content-ref (element) | _special_  | 0-n   | Points to code for a detached fix in another location that uses the language or system specified by the _\<xccdf:fix\>_ element’s `@system` attribute. If multiple _\<xccdf:fix-content-ref\>_ elements appear, they represent alternative locations from which a benchmark consumer may obtain the fix content. Benchmark consumers should process the alternatives in the order in which they appear in the XML. The first _\<xccdf:fix-content-ref\>_ from which content can be successfully retrieved should be used. |
+| fix-content (element)     | _special_  | 0-n   | Holds the actual code of a fix, in the language or system specified by the _\<xccdf:fix\>_ element’s `@system` attribute. If both _\<xccdf:fix-content-ref\>_ and _\<xccdf:fix-content\>_ elements appear in a single _\<xccdf:fix\>_ element, benchmark consumers should use the _\<xccdf:fix-content\>_ element only if none of the references can be resolved to provide content. |
+| ------                    | ----       | ----- | ----------- |
+| id (attribute)            | identifier | 0-1   | A local identifier for the element. It is optional for the id to be unique; multiple_\<xccdf:fix\>_ elements may have the same id but different values for their other attributes. |
+| reboot (attribute)        | boolean    | 0-1   | Whether or not remediation will require a reboot or hard reset of the target. Permitted values: true (1) and false (0) (default: 0). |
+| strategy (attribute)      | string     | 0-1   | The method or approach for fixing the problem. See Table 15 for the list of possible values. |
+| disruption (attribute)    | string     | 0-1   | An estimate of the potential for disruption or operational degradation that the application of this fix will impose on the target.See Table 15 for the list of possible values. |
+| complexity (attribute)    | string     | 0-1   | The estimated complexity or difficulty of applying the fix to the target.See Table 15 for the list of possible values. |
+| system (attribute)        | URI        | 0-1   | A URI that identifies the scheme, language, engine, or process for which the fix contents are written. Table 17 defines several general-purpose URNs that may be used for this, and tool vendors and system providers may define and use target-specific URNs. |
+| platform (attribute)      | URI        | 0-1   | In case different fix scripts or procedures are required for different target platform types (e.g., different patches for Windows Vista and Windows 7), this attribute allows a CPE name or CPE applicability language expression to be associated with an _\<xccdf:fix\>_element. This should appear on an _\<xccdf:fix\>_ when the content applies to only one platform out of several to which the rule could apply. |
 
 Table 17lists predefined values for the _@s __ystem_attribute of an_\<xccdf:__ fix__\>_ element.
 
