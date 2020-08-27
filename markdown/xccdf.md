@@ -1094,7 +1094,7 @@ Table 18 describes the _\<xccdf:Value\>_ element's properties (in addition to th
 - "textline" (multiple lines of text)
 - "text" (single line of text)
 - "date" (date)
-- "datetime" (date and time)
+- "datetime" (date and time) in the [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime). The [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) is a subset of the UTC ISO 8601 format.
  |
 
 #### 6.4.5.3\<xccdf:choices\>Element
@@ -1245,8 +1245,8 @@ Table 23 describes the _\<xccdf:TestResult\>_ element's properties. Although sev
 | metadata (element) | _special_ | 0-n | XML metadata associated with this _\<xccdf: __TestResult__ \>_. For example, this element can hold a copy of the _\<xccdf:metadata\>_ element of the _\<xccdf:Benchmark\>_ which served as the source for these results. This is especially useful if the _\<xccdf: __TestResult__ \>_will be separated from its source benchmark because the publication and support information in the benchmark can travel with the _\<xccdf: __TestResult__ \>_. Benchmark consumers may also add their own metadata to _\<xccdf: __TestResult__ \>_ elements they produce. See Section 6.2.3. |
 | signature (element) | _special_ | 0-1 | A digital signature asserting authorship and allowing verification of the integrity of the _\<xccdf: __TestResult__ \>_. See Section 6.2.7. |
 | id (attribute) | _special_ | 1 | Unique identifier for this element; see Section 6.2.3. |
-| start-time (attribute) | dateTime | 0-1 | Time when test began. |
-| end-time (attribute) | dateTime | 1 | Time when test was completed and the results recorded. |
+| start-time (attribute) | dateTime | 0-1 | Time when test began in the [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime). The [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) is a subset of the UTC ISO 8601 format. |
+| end-time (attribute) | dateTime | 1 | Time when test was completed and the results recorded in the [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime). The [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) is a subset of the UTC ISO 8601 format. |
 | test-system (attribute) | string | 0-1 | Name of the benchmark consumer program that generated this _\<xccdf: __TestResult__ \>_ element; should be either a CPE name or a CPE applicability language expression. |
 | version (attribute) | string | 0-1 | The version number string copied from the _\<xccdf:Benchmark\>_. |
 | Id (attribute) | _special_ | 0-1 | An identifier used for referencing elements included in an XML signature. See Section 6.2.7. |
@@ -1303,7 +1303,7 @@ The _\<xccdf: __rule-result__ \>_element within the _\<xccdf: __TestResult__ \>_
 | idref (attribute) | identifier | 1 | Identifier of an _\<xccdf: __Rule__ \>_(from the benchmark designated in the _\<xccdf:TestResult\>_). |
 | role (attribute) | string | 0-1 | The role string copied from the _@role_ attribute of the _\<xccdf: __Rule__ \>_. |
 | severity (attribute) | string | 0-1 | The _@severity_ attribute value copied from the _\<xccdf: __Rule__ \>_(default: "unknown"). |
-| time (attribute) | dateTime | 0-1 | Time when application of this instance of this _\<xccdf: __Rule__ \>_was completed. |
+| time (attribute) | dateTime | 0-1 | Time in the [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) when application of this instance of this _\<xccdf: __Rule__ \>_was completed. The [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) is a subset of the UTC ISO 8601 format. |
 | version (attribute) | string | 0-1 | The version number string copied from the _\<xccdf:version\>_ element of the _\<xccdf: __Rule__ \>__._ |
 | weight (attribute) | decimal | 0-1 | The weight number copied from the _@w __eight_ attribute of the _\<xccdf:__ Rule__\>_. Expressed as a non-negative real number (0.0 or greater, maximum 3 digits, default 1.0). |
 
@@ -1338,7 +1338,7 @@ The _\<xccdf: __override__ \>_element provides a mechanism for an auditor to cha
 | --- | --- | --- | --- |
 | new-result (element) | string | 1 | The new, override rule result status |
 | remark (element) | string | 1 | Rationale or explanation text for why or how the override was applied. It MAY have an _@__xml:lang_ attribute (see Section 6.2.10). |
-| time (attribute) | dateTime | 1 | When the override was applied |
+| time (attribute) | dateTime | 1 | In the [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) when the override was applied. The [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) is a subset of the UTC ISO 8601 format. |
 | authority (attribute) | string | 1 | Name or other identification for the human principal authorizing the override |
 
 The example below shows how an _\<xccdf: __override__ \>_element would appear in an_\<xccdf: __rule-result__ \> __._ Note: if an _\<xccdf:__ override __\>_element is added to an_\<xccdf:__ rule-result __\>_that was previously signed, it will break any XML digital signature applied to the enclosing _\<xccdf:__ TestResult__\>_element.
@@ -1360,7 +1360,7 @@ The _\<xccdf:tailoring-file\>_ element in the _\<xccdf:TestResult\>_ element is 
 | --- | --- | --- | --- |
 | id (attribute) | identifier | 1 | Identifier for the _\<xccdf:Tailoring\>_ element |
 | version (attribute) | string | 1 | Version of the _\<xccdf:Tailoring\>_ element |
-| time (attribute) | dateTime | 1 | Timestamp for the _\<xccdf:Tailoring\>_ element |
+| time (attribute) | dateTime | 1 | Timestamp in the [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) for the _\<xccdf:Tailoring\>_ element. The [xsd:dateTime format](https://www.w3.org/TR/xmlschema-2/#dateTime) is a subset of the UTC ISO 8601 format. |
 
 ## 6.7\<xccdf:Tailoring\> Element
 
