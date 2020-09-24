@@ -850,7 +850,7 @@ An _\<xccdf:Rule\>_ element defines a single item to be checked as part of a ben
 The example below shows a very simple _\<xccdf:Rule\>_ element.
 
 | \<xccdf:Rule id="xccdf\_org.example\_rule\_pwd-perm" selected="1" weight="6.5" severity="high"\>\<xccdf:title\>Password File Permission\</xccdf:title\>\<xccdf:description\>Check the access control on the password file. Normal users should not be able to write to it.
- \</xccdf:description\>\<xccdf:requires idref="xccdf\_org.example\_rule\_passwd-exists"/\>\<xccdf:fixtext\>Set permissions on the passwd file to owner-write, world-read\</xccdf:fixtext\>\<xccdf:fix strategy="restrict" reboot="0" disruption="low"\>chmod 644 /etc/passwd\</xccdf:fix\>\<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"\>\<xccdf:check-content-ref href="ovaldefs.xml" name="oval:org.example:def:123"/\>\</xccdf:check\>\</xccdf:Rule\> |
+ \</xccdf:description\>\<xccdf:requires idref="xccdf\_org.example\_rule\_passwd-exists"/\>\<xccdf:fixtext\>Set permissions on the passwd file to owner-write, world-read\</xccdf:fixtext\>\<xccdf:fix strategy="restrict" reboot="0" disruption="low" system="urn:xccdf:fix:commands"\>\<xccdf:fix-content\>chmod 644 /etc/passwd\\</xccdf:fix-content\></xccdf:fix\>\<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"\>\<xccdf:check-content-ref href="ovaldefs.xml" name="oval:org.example:def:123"/\>\</xccdf:check\>\</xccdf:Rule\> |
 | --- |
 
 One of XCCDF's main features is the organization and selection of target-applicable groups and rules for performing security and operational checks on systems. XCCDF can access granular and expressive mechanisms for assessing the state of a system according to the rule criteria. Examples of these mechanisms are definitions expressed in the Open Vulnerability and Assessment Language (OVAL) and questionnaires expressed in the Open Checklist Interactive Language (OCIL). These checking mechanisms follow the conceptual model of collecting or acquiring the state of a target system, and then assessing the state for conformance to conditions and criteria expressed as rules.
@@ -1037,6 +1037,17 @@ Table 16 lists the possible properties of an _\<xccdf:fix\>_ element.
 | complexity (attribute)    | string     | 0-1   | The estimated complexity or difficulty of applying the fix to the target.See Table 15 for the list of possible values. |
 | system (attribute)        | URI        | 0-1   | A URI that identifies the scheme, language, engine, or process for which the fix contents are written. Table 17 defines several general-purpose URNs that may be used for this, and tool vendors and system providers may define and use target-specific URNs. |
 | platform (attribute)      | URI        | 0-1   | In case different fix scripts or procedures are required for different target platform types (e.g., different patches for Windows Vista and Windows 7), this attribute allows a CPE name or CPE applicability language expression to be associated with an _\<xccdf:fix\>_element. This should appear on an _\<xccdf:fix\>_ when the content applies to only one platform out of several to which the rule could apply. |
+
+
+Table 16a lists the possible properties of an _\<xccdf:fix-content\>_ element
+
+**Table 16a: Possible Properties for \<xccdf:fix-content\> Element**
+
+| Property                  | Type       | Count | Description |
+| ------------------------- | ---------- | ----- | ----------- |
+| sub (element)             | identifier | 0-n   | Specifies an _\<xccdf:Value\>_ or _\<xccdf:plain-text\>_ substitution. See Section 6.2.9. |
+| instance (element)        | string     | 0-n   | Designates a spot where the name of the instance should be substituted into the fix template to generate the final fix data. If the _@__context_ attribute is omitted, the value of the context shalldefault to "undefined". |
+
 
 Table 17lists predefined values for the _@s __ystem_attribute of an_\<xccdf:__ fix__\>_ element.
 
