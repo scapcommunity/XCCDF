@@ -1412,6 +1412,12 @@
                             that assigned the identifier. </xsd:documentation>
                     </xsd:annotation>
                 </xsd:attribute>
+                <xsd:attribute name="rel" type="cdf:relEnumType" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">Denotes the relationship between 
+                            identifiers.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
                 <xsd:anyAttribute namespace="##other" processContents="lax">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">May also have other attributes from other
@@ -1422,6 +1428,29 @@
             </xsd:extension>
         </xsd:simpleContent>
     </xsd:complexType>
+
+    <xsd:simpleType name="relEnumType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Allowed relationship type keywords for the 
+                &lt;xccdf:ident&gt; element used in &lt;xccdf:Rule&gt; elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="superseded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">The specified LRI used to refer to this 
+                        rule in a previous version of the baseline.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="related">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">This rule is related to the referenced rule 
+                        in a previous version of the baseline, but none of the above values 
+                        precisely capture this relationship.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:complexType name="warningType" mixed="true">
         <xsd:annotation>
