@@ -957,11 +957,8 @@ identifier for each rule using this URI. The system URI SHOULD have a prefix
 
    | Value of relation attribute | Intended semantics  |
    | --- | --- |
-   | superseded | The specified LRI used to refer to this rule in a previous version of the baseline |
-   | formerly_part_of | This rule defines an aspect which used to be treated (amongst other aspects) within the referenced rule |
-   | contains | Among other aspects, this rule contains an aspect that used to be treated in the referenced rule |
-   | refactored_from | This rule originiated by refactoring the referenced rule, but the nature of the relationship cannot be described properly with `formerly_part_of` or `contains` |
-   | related | This rule is related to the referenced rule in a previous version of the baseline, but none of the above values precisely capture this relationship |
+   | superseded | The specified LRI used to refer to this rule in a previous version of the baseline but has been superseded by the present one (which MUST be specified in a separate ident element) |
+   | related | This rule is related to the referenced rule in a previous version of the baseline other than the `superseded` relation|
 
    Organizations may define organization-specific additional
    attributes from other schemas than the XCCDF schema in order to
