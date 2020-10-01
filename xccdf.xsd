@@ -1979,6 +1979,27 @@ NOT || P | F | U | E | N | K | S | I ||
                     separate &lt;xccdf:rule-result&gt; for each check.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="media-type" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">Applicable in cases where &lt;xccdf:check-content-ref&gt; 
+                    is used and the @href attribute points to a compressed file. The compressed file SHALL 
+                    only contain a single file of type "application/xml". Multiple files in the compressed 
+                    files are not supported or allowed. When specified for &lt;xccdf:check-content-ref&gt;, 
+                    the attribute shall have one of the following values for compressed files:  
+                    - application/xml for uncompressed .xml file types  
+                    - application/zstd for .zst file extension types  
+                    - application/x-zstd-compressed-tar for .tar.zst file extension types  
+                    - application/zip for .zip file extension types  
+                    - application/gzip for .gz file extension types  
+                    - application/x-compressed-tar for .tar.gz file extension types  
+                    - application/x-bzip for .bz2 file extension types  
+                    - application/x-bzip-compressed-tar for .tar.bz2 file extension types  
+                    - application/x-tar for .tar file extension types  
+                    - application/x-xz for .xz file extension types  
+                    - application/x-xz-compressed-tar for .tar.xz file extension types  
+                    - application/x-xz for .xz file extension types</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute ref="xml:base"/>
     </xsd:complexType>
 
