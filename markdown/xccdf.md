@@ -876,6 +876,8 @@ Table 9 describes the _\<xccdf:Rule\>_ element's properties (in addition to the 
 | fixtext (element) | _special_
  | 0-n | Data that describes how to bring a target system into compliance with this rule. Each _\<xccdf:fixtext\>_ element may be associated with one or more _\<xccdf:fix\>_ element values. See Section 6.4.4.5. |
 | fix (element) | _special_ | 0-n | A command string, script, or other system modification statement that, if executed on the target system, can bring it into full, or at least better, compliance with this rule. See Section 6.4.4.5. |
+| checktext (element) | _special_
+ | 0-n | Supplementary information on checks (e.g., description of what the check does, guidance in interpreting the results of a check, etc.) Each _\<xccdf:checktext\>_ element may be associated with one or more _\<xccdf:check\>_ element values. See Section 6.4.4.4. |
 | check (element) | _special_ | (1-n instances of check)XOR (1 instance of complex-check) | The definition of, or a reference to, the target system check needed to test compliance with this rule. Sibling _\<xccdf: __check__ \>_ elements must have different values for the combination of their _@ __selector_ and _@system_ attributes, and different values for their _@__ id_ attribute (if any). See Section 6.4.4.4. |
 | complex-check (element) | _special_ | A boolean expression composed of operators (and, or, not) and individual checks. See Section 6.4.4.4. |
 | signature (element) | _special_ | 0-1 | A digital signature asserting authorship and allowing verification of the integrity of the rule. See Section 6.2.7. |
@@ -912,6 +914,8 @@ Table 10 lists assigned URIs that may appear as the value of the _@system_ attri
 An _\<xccdf:ident\>_ element MAY also have additional attributes from schemas other than the XCCDF schema. Individual organizations and standards MAY associate specific interpretations of rules based on the value of an _\<xccdf:ident\>_ element and these additional attributes are allowed in order to refine those interpretations. These additional attributes MUST NOT alter the processing of a benchmark document as described in Section 7, although they MAY be added to the output of Document Generation or displayed to users during processing.
 
 #### 6.4.4.4\<xccdf:check\> and \<xccdf:complex-check\>Elements
+
+
 
 Table 11 shows the possible properties of the _\<xccdf:check\>_ element.
 
@@ -981,6 +985,25 @@ The example below shows an_\<xccdf:complex-check\>_ with several components.
 | \<xccdf:complex-check operator="OR"\>\<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"\>\<xccdf:check-content-ref href="xpDefs.xml" name="oval:org.example:def:456"/\>\</xccdf:check\>\<xccdf:complex-check operator="AND" negate="1"\>\<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"\>\<xccdf:check-content-ref href="xpDefs.xml" name="oval:org.example:def:789"/\>\</xccdf:check\>\<xccdf:check system="http://scap.nist.gov/schema/ocil/2.0"\>\<xccdf:check-content-ref href="xpInter.xml"
  name="ocil:org.example:questionnaire:6"/\>\</xccdf:check\>\</xccdf:complex-check\>\</xccdf:complex-check\> |
 | --- |
+
+The _\<xccdf:checktext\>_ element can be used to supply additional guidance to the reader. For example:
+
+- description of what a check actually does
+- information about limitations of the check
+- guidance on how to interpret check results
+
+Table TODO_table_checktext_values lists the possible properties of an _\<xccdf:checktext\>_element.
+
+**Table TODO_table_checktext_values: Possible Properties for \<xccdf:checktext\> Element**
+
+| Property | Type | Count | Description |
+| --- | --- | --- | --- |
+| sub (element) | identifier | 0-n | Specifies an _\<xccdf:Value\>_ or _\<xccdf:plain-text\>_ substitution. See Section 6.2.9. |
+| --- | --- | --- | --- |
+| xml:lang (attribute) | _special_ | 0-1 | The language for the element; see Section 6.2.10. |
+| override (attribute) | boolean | 0-1 | Specifies inheritance behavior (see Section 6.3.1). (default: false) |
+| checkref (attribute) | identifier | 0-1 | A reference to a specific _\<xccdf:check\>__@id_ attribute. This allows pairing explanatory text with specific checks. |
+
 
 #### 6.4.4.5\<xccdf:fixtext\> and \<xccdf:fix\>Elements
 
